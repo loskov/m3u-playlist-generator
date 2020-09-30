@@ -1,0 +1,5 @@
+/.env
+/.idea/
+/playlist.m3u8
+/target/
+**/*.rs.bk

@@ -1,0 +1,9 @@
+[package]
+name = "m3u-playlist-generator"
+version = "0.1.0"
+authors = ["Maxim Loskov <maxim@loskov.com>"]
+edition = "2018"
+
+[dependencies]
+diesel = { version = "1.4.5", features = ["mysql"] }
+dotenv = "0.15.0"
