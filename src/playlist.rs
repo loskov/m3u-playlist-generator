@@ -84,6 +84,6 @@ impl Playlist {
     // Writes a playlist to a file.
     pub fn write_to_file(&self, filename: &str) {
         let mut file = File::create(filename).expect("Cannot create a file.");
-        file.write_all(self.get_m3u8.as_ref()).expect("Cannot write a playlist to a file.");
+        file.write_all(self.get_m3u8().as_ref()).expect("Cannot write a playlist to a file.");
     }
 }

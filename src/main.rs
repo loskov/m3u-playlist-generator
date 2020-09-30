@@ -3,7 +3,7 @@ extern crate diesel;
 
 use diesel::{ mysql::MysqlConnection, prelude::* };
 use dotenv::dotenv;
-use std::{ env, io::Write, fs::File };
+use std::env;
 use crate::{ models::JoinedChannel, playlist::Playlist };
 
 mod models;
