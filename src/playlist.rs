@@ -2,24 +2,24 @@ use std::{ io::Write, fs::File };
 use crate::models::JoinedChannel;
 
 pub struct Playlist {
-    // Joined channels
+    /// Joined channels
     joined_channels: Vec<JoinedChannel>,
-    // Whether a playlist is for Kodi
+    /// Whether a playlist is for Kodi
     is_for_kodi: bool,
 }
 
 impl Playlist {
-    // Playlist constructor.
+    /// Playlist constructor.
     pub fn new(joined_channels: Vec<JoinedChannel>, is_for_kodi: bool) -> Playlist {
         Playlist { joined_channels, is_for_kodi }
     }
 
-    // Escapes a comma.
+    /// Escapes a comma.
     fn escape_comma(text: &str) -> String {
         text.replace(",", "\u{201A}")
     }
 
-    // Formats a category name.
+    /// Formats a category name.
     fn format_category_name(&self, category_name: &str) -> String {
         if self.is_for_kodi {
             format!("[COLOR powderblue][LIGHT]{} / [/LIGHT][/COLOR]", category_name)
@@ -28,7 +28,7 @@ impl Playlist {
         }
     }
 
-    // Returns a playlist in the M3U8 format.
+    /// Returns a playlist in the M3U8 format.
     fn get_m3u8(&self) -> String {
         let mut m3u8 = "#EXTM3U\n".to_string();
 
@@ -81,7 +81,7 @@ impl Playlist {
         m3u8
     }
 
-    // Writes a playlist to a file.
+    /// Writes a playlist to a file.
     pub fn write_to_file(&self, filename: &str) {
         let mut file = File::create(filename).expect("Cannot create a file.");
         file.write_all(self.get_m3u8().as_ref()).expect("Cannot write a playlist to a file.");
