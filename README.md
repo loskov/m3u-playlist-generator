@@ -11,7 +11,7 @@ cp .env.dist .env
 
 В файле `.env` необходимо отредактировать значение переменной `DATABASE_URL` в соответствии с шаблоном `mysql://[user[:password]@]host/database_name`.
 
-```
+```shell script
 # Установить пакет "libmysqlclient-dev".
 sudo apt-get install libmysqlclient-dev
 
