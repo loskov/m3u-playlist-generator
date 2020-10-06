@@ -1,5 +1,5 @@
-use std::{ io::Write, fs::File };
 use crate::models::JoinedChannel;
+use std::{fs::File, io::Write};
 
 pub struct Playlist {
     /// Joined channels
@@ -11,7 +11,10 @@ pub struct Playlist {
 impl Playlist {
     /// Playlist constructor.
     pub fn new(joined_channels: Vec<JoinedChannel>, is_for_kodi: bool) -> Playlist {
-        Playlist { joined_channels, is_for_kodi }
+        Playlist {
+            joined_channels,
+            is_for_kodi,
+        }
     }
 
     /// Escapes a comma.
@@ -22,7 +25,10 @@ impl Playlist {
     /// Formats a category name.
     fn format_category_name(&self, category_name: &str) -> String {
         if self.is_for_kodi {
-            format!("[COLOR powderblue][LIGHT]{} / [/LIGHT][/COLOR]", category_name)
+            format!(
+                "[COLOR powderblue][LIGHT]{} / [/LIGHT][/COLOR]",
+                category_name
+            )
         } else {
             format!("{} / ", category_name)
         }
@@ -57,13 +63,19 @@ impl Playlist {
 {properties}{source_channel_url}{source_query_string}{postfix_user_agent}\n",
                 tv_guide_channel_external_id = if let Some(x) = &x.tv_guide_channel {
                     format!(" tvg-id=\"{}\"", x.external_id)
-                } else { "".to_string() },
+                } else {
+                    "".to_string()
+                },
                 channel_tv_guide_logo = if let Some(x) = &x.channel.tv_guide_logo {
                     format!(" tvg-logo=\"{}\"", x)
-                } else { "".to_string() },
+                } else {
+                    "".to_string()
+                },
                 category_name = if let Some(x) = &x.category {
                     self.format_category_name(&Playlist::escape_comma(&x.short_name))
-                } else { "".to_string() },
+                } else {
+                    "".to_string()
+                },
                 channel_name = Playlist::escape_comma(&x.channel.name),
                 properties = properties
                     .iter()
@@ -73,7 +85,9 @@ impl Playlist {
                 source_channel_url = &x.source_channel.url,
                 source_query_string = if let Some(x) = &x.source.query_string {
                     format!("?{}", x)
-                } else { "".to_string() },
+                } else {
+                    "".to_string()
+                },
                 postfix_user_agent = postfix_user_agent,
             );
         }
@@ -84,6 +98,7 @@ impl Playlist {
     /// Writes a playlist to a file.
     pub fn write_to_file(&self, filename: &str) {
         let mut file = File::create(filename).expect("Cannot create a file.");
-        file.write_all(self.get_m3u8().as_ref()).expect("Cannot write a playlist to a file.");
+        file.write_all(self.get_m3u8().as_ref())
+            .expect("Cannot write a playlist to a file.");
     }
 }
