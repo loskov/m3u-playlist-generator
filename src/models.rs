@@ -20,7 +20,6 @@ pub struct JoinedChannel {
     pub source_channel: SourceChannel,
     pub source: Source,
     pub tv_guide_channel: Option<TvGuideChannel>,
-    pub is_excluded: bool,
 }
 
 #[derive(Queryable)]
@@ -38,6 +37,7 @@ pub struct Source {
     pub description: Option<String>,
     pub query_string: Option<String>,
     pub is_active: bool,
+    pub priority: i32,
 }
 
 #[derive(Queryable)]

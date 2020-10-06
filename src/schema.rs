@@ -31,6 +31,7 @@ table! {
         description -> Nullable<VarChar>,
         query_string -> Nullable<VarChar>,
         is_active -> Bool,
+        priority -> Integer,
     }
 }
 
