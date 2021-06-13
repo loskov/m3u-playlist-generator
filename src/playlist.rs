@@ -1,16 +1,16 @@
-use crate::models::JoinedChannel;
+use crate::models::ChannelInfo;
 use std::{fs::File, io::Write};
 
 pub struct Playlist {
     /// Joined channels
-    joined_channels: Vec<JoinedChannel>,
+    joined_channels: Vec<ChannelInfo>,
     /// Whether a playlist is for Kodi
     is_for_kodi: bool,
 }
 
 impl Playlist {
     /// Playlist constructor.
-    pub fn new(joined_channels: Vec<JoinedChannel>, is_for_kodi: bool) -> Playlist {
+    pub fn new(joined_channels: Vec<ChannelInfo>, is_for_kodi: bool) -> Playlist {
         Playlist {
             joined_channels,
             is_for_kodi,
@@ -97,8 +97,10 @@ impl Playlist {
 
     /// Writes a playlist to a file.
     pub fn write_to_file(&self, filename: &str) {
-        let mut file = File::create(filename).expect("Cannot create a file.");
-        file.write_all(self.get_m3u8().as_ref())
+        File
+            ::create(filename)
+            .expect("Cannot create a file.")
+            .write_all(self.get_m3u8().as_ref())
             .expect("Cannot write a playlist to a file.");
     }
 }

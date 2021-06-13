@@ -14,7 +14,7 @@ pub struct Channel {
 }
 
 #[derive(Queryable)]
-pub struct JoinedChannel {
+pub struct ChannelInfo {
     pub channel: Channel,
     pub category: Option<Category>,
     pub source_channel: SourceChannel,
