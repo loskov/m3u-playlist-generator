@@ -3,3 +3,4 @@
 /playlist.m3u8
 /target/
 **/*.rs.bk
+.DS_Store
