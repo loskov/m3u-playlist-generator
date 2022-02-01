@@ -2,8 +2,8 @@
 name = "m3u-playlist-generator"
 version = "0.1.0"
 authors = ["Maxim Loskov <maxim@loskov.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-diesel = { version = "1.4.7", features = ["mysql"] }
+diesel = { version = "1.4.8", features = ["mysql"] }
 dotenv = "0.15.0"
